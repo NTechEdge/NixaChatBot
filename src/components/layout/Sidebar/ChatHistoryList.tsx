@@ -11,13 +11,13 @@ interface HistoryItem {
 
 const mockHistory: HistoryItem[] = [
   { id: '1', title: 'Amn astesi kno' },
-  { id: '2', title: 'Creating commands in Claude VSC...' },
+  { id: '2', title: 'Creating commands in Nixa VSC...' },
   { id: '3', title: 'Max plan 1 year affordability' },
   { id: '4', title: 'Modal' },
-  { id: '5', title: 'Claude native binary installation er...' },
+  { id: '5', title: 'Nixa native binary installation er...' },
   { id: '6', title: 'Greeting' },
   { id: '7', title: 'Implementing industry standards' },
-  { id: '8', title: 'Claude API documentation references' },
+  { id: '8', title: 'Nixa API documentation references' },
   { id: '9', title: 'Full stack developer intern job post' },
   { id: '10', title: 'Ekta SDK banano jonno ki korte hoi' },
   { id: '11', title: 'Website security steps for full-stack...' },
