@@ -19,7 +19,11 @@ const AVAILABLE_MODELS = [
   { id: 'haiku-3-5', label: 'Haiku 3.5', tier: 'Lightning Fast' },
 ]
 
-export const ChatInputBox: React.FC = () => {
+interface ChatInputBoxProps {
+  variant?: 'hero' | 'bar'
+}
+
+export const ChatInputBox: React.FC<ChatInputBoxProps> = ({ variant = 'hero' }) => {
   const dispatch = useAppDispatch()
   const promptText = useAppSelector((state) => state.chatUi.promptText)
   const activeMode = useAppSelector((state) => state.chatUi.activeMode)
@@ -50,12 +54,80 @@ export const ChatInputBox: React.FC = () => {
       const currentState = store.getState()
       const convId = currentState.chatUi.activeConversationId
       if (convId) {
-        const reply = `I understand your question about: "${text}".\n\nNixa is running in ${currentState.chatUi.activeMode.toUpperCase()} mode using ${currentState.chatUi.selectedModel}. I'm ready to help you implement, refine, or review any tasks!`
+        const reply = `Hi there! How can I help you today?`
         dispatch(addAssistantReply({ convId, content: reply }))
       }
-    }, 750)
+    }, 600)
   }
 
+  // Active chat bottom bar variant (matches screenshot)
+  if (variant === 'bar') {
+    return (
+      <div className="w-full max-w-3xl flex flex-col items-center">
+        <div className="w-full bg-white dark:bg-[#1c1d20] border border-black/10 dark:border-white/10 rounded-2xl px-4 py-2.5 flex items-center gap-3 shadow-lg dark:shadow-2xl focus-within:border-black/25 dark:focus-within:border-white/20 transition-all">
+          {/* Attachment button */}
+          <button
+            className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white p-1 rounded-lg transition-colors cursor-pointer shrink-0"
+            title="Attach file"
+          >
+            <Plus className="w-4 h-4" />
+          </button>
+
+          {/* Input field */}
+          <input
+            type="text"
+            value={promptText}
+            onChange={(e) => dispatch(setPromptText(e.target.value))}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault()
+                handleSubmit()
+              }
+            }}
+            placeholder="Write a message..."
+            className="flex-1 bg-transparent text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:outline-none"
+          />
+
+          {/* Right audio actions & send */}
+          <div className="flex items-center gap-1 text-zinc-500 dark:text-zinc-400 shrink-0">
+            <button
+              className="p-1 hover:text-zinc-900 dark:hover:text-white transition-colors cursor-pointer"
+              title="Voice input"
+            >
+              <Mic className="w-4 h-4" />
+            </button>
+            <button
+              className="p-1 hover:text-zinc-900 dark:hover:text-white transition-colors cursor-pointer"
+              title="Audio"
+            >
+              <Volume2 className="w-4 h-4" />
+            </button>
+            {promptText.trim() && (
+              <button
+                onClick={handleSubmit}
+                className="p-1.5 bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-black dark:hover:bg-zinc-200 rounded-full transition-colors cursor-pointer ml-1"
+                title="Send message"
+              >
+                <ArrowUp className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Sub-footer disclaimer and model pill */}
+        <div className="w-full flex items-center justify-between text-[11px] text-zinc-400 dark:text-zinc-500 pt-2 px-1 select-none">
+          <span className="flex-1 text-center truncate">
+            Nixa is AI and can make mistakes. Please double-check responses.
+          </span>
+          <span className="font-medium text-zinc-500 dark:text-zinc-400 shrink-0 pl-2">
+            {selectedModel}
+          </span>
+        </div>
+      </div>
+    )
+  }
+
+  // Large Hero prompt box variant
   return (
     <div className="w-full max-w-2xl bg-white dark:bg-[#1c1d21]/95 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-2xl p-3.5 shadow-xl dark:shadow-2xl focus-within:border-black/25 dark:focus-within:border-white/20 transition-all duration-200">
       {/* Input Area */}

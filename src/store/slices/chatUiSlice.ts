@@ -12,81 +12,120 @@ interface ChatUIState {
 
 const INITIAL_CONVERSATIONS: Conversation[] = [
   {
+    id: 'conv-greeting',
+    title: 'Greeting',
+    timestamp: 'Today',
+    messages: [
+      {
+        id: 'msg-g1',
+        sender: 'user',
+        content: 'Hi',
+        timestamp: '11:00 AM',
+      },
+      {
+        id: 'msg-g2',
+        sender: 'assistant',
+        content: 'Hi there! How can I help you today?',
+        timestamp: '11:00 AM',
+      },
+    ],
+  },
+  {
     id: 'conv-1',
-    title: 'Creating commands in Nixa VSC...',
+    title: 'Amn astesi kno',
     timestamp: 'Today',
     messages: [
       {
         id: 'm1-1',
         sender: 'user',
-        content: 'How do I create custom slash commands in the Nixa extension?',
+        content: 'Amn astesi kno? Ekta summary dao.',
         timestamp: '10:32 AM',
       },
       {
         id: 'm1-2',
         sender: 'assistant',
         content:
-          'To create custom slash commands in Nixa, configure them inside your extension manifest or register them via the CLI SDK. Here is a minimal implementation pattern:\n\n1. Define the command trigger in your settings\n2. Bind the execution callback with your desired context\n3. Export the command descriptor.\n\nWould you like me to generate a boilerplate for you?',
+          'এটি আপনার পূর্ববর্তী টাস্ক এবং প্রজেক্টের আলোচনার রেফারেন্স। আপনি চাইলে আমরা এখান থেকে আবার শুরু করতে পারি।',
         timestamp: '10:33 AM',
       },
     ],
   },
   {
     id: 'conv-2',
-    title: 'Max plan 1 year affordability',
+    title: 'Creating commands in Nixa VSC...',
     timestamp: 'Yesterday',
     messages: [
       {
         id: 'm2-1',
         sender: 'user',
-        content: 'What is the breakdown and feature set for the 1-year plan?',
+        content: 'How do I create custom slash commands in the Nixa extension?',
         timestamp: '2:15 PM',
       },
       {
         id: 'm2-2',
         sender: 'assistant',
         content:
-          'The 1-year plan offers:\n\n• High-priority inference speed with Claude 3.5 Sonnet\n• 200,000 token context window capacity\n• Artifacts and live preview support\n• Custom agent persona presets\n\nIt saves approximately 20% compared to monthly billing.',
+          'To create custom slash commands in Nixa, configure them inside your extension manifest or register them via the CLI SDK.',
         timestamp: '2:16 PM',
       },
     ],
   },
   {
     id: 'conv-3',
-    title: 'Implementing industry standards',
+    title: 'Max plan 1 year affordability',
     timestamp: 'Oct 6',
     messages: [
       {
         id: 'm3-1',
         sender: 'user',
-        content: 'What are the top three best practices for atomic React components?',
+        content: 'What is the breakdown and feature set for the 1-year plan?',
         timestamp: '4:45 PM',
       },
       {
         id: 'm3-2',
         sender: 'assistant',
         content:
-          'The three core tenets are:\n\n1. Single Responsibility: Each component should render one distinct visual element without side effects.\n2. Strict Props Typing: Always define TypeScript interfaces for your variants and children.\n3. Encapsulated Styling: Rely on design tokens or utility classes rather than arbitrary inline styles.',
+          'The 1-year plan offers high-priority inference speed, 200,000 token context window capacity, and custom agent persona presets.',
         timestamp: '4:46 PM',
       },
     ],
   },
   {
     id: 'conv-4',
-    title: 'Nixa native binary installation er...',
+    title: 'Modal',
     timestamp: 'Oct 5',
     messages: [
       {
         id: 'm4-1',
         sender: 'user',
-        content: 'Windows এ native binary install করার সময় কী কী ডিপেন্ডেন্সি প্রয়োজন?',
-        timestamp: '11:20 AM',
+        content: 'Make an accessible modal component in React.',
+        timestamp: '1:10 PM',
       },
       {
         id: 'm4-2',
         sender: 'assistant',
         content:
-          'Windows-এ সাধারণত Microsoft Visual C++ Redistributable (x64) এবং Node.js/PowerShell 7+ রানটাইম দরকার হয়।\n\nআপনি `winget install Microsoft.VCRedist.2015+.x64` কমান্ড দিয়ে সহজে এটি সেটআপ করতে পারেন।',
+          'Here is a lightweight accessible modal with focus-trap and escape key binding.',
+        timestamp: '1:11 PM',
+      },
+    ],
+  },
+  {
+    id: 'conv-5',
+    title: 'Nixa native binary installation er...',
+    timestamp: 'Oct 5',
+    messages: [
+      {
+        id: 'm5-1',
+        sender: 'user',
+        content: 'Windows এ native binary install করার সময় কী কী ডিপেন্ডেন্সি প্রয়োজন?',
+        timestamp: '11:20 AM',
+      },
+      {
+        id: 'm5-2',
+        sender: 'assistant',
+        content:
+          'Windows-এ Microsoft Visual C++ Redistributable (x64) এবং Node.js/PowerShell 7+ রানটাইম দরকার হয়।',
         timestamp: '11:21 AM',
       },
     ],
@@ -96,7 +135,7 @@ const INITIAL_CONVERSATIONS: Conversation[] = [
 const initialState: ChatUIState = {
   activeMode: 'chat',
   selectedModel: 'Sonnet 5.5 Medium',
-  activeConversationId: null, // Null means fresh hero greeting view
+  activeConversationId: null, // Starts on fresh home, or user clicks any chat
   promptText: '',
   conversations: INITIAL_CONVERSATIONS,
   isTyping: false,
@@ -145,7 +184,7 @@ export const chatUiSlice = createSlice({
       } else {
         // Start new conversation
         const newId = `conv-${Date.now()}`
-        const newTitle = content.length > 32 ? `${content.slice(0, 32)}...` : content
+        const newTitle = content.length > 25 ? `${content.slice(0, 25)}...` : content
         const newConv: Conversation = {
           id: newId,
           title: newTitle,
