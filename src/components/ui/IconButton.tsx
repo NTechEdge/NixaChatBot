@@ -23,7 +23,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
   ...props
 }) => {
   const baseStyles =
-    'inline-flex items-center justify-center rounded-lg transition-all duration-150 select-none focus:outline-none focus-visible:ring-1 focus-visible:ring-white/20 disabled:opacity-40 disabled:pointer-events-none'
+    'inline-flex items-center justify-center rounded-lg transition-all duration-150 select-none focus:outline-none focus-visible:ring-1 focus-visible:ring-black/20 dark:focus-visible:ring-white/20 disabled:opacity-40 disabled:pointer-events-none'
 
   const sizeStyles: Record<IconButtonSize, string> = {
     sm: 'w-7 h-7 text-xs',
@@ -33,13 +33,13 @@ export const IconButton: React.FC<IconButtonProps> = ({
 
   const variantStyles: Record<IconButtonVariant, string> = {
     ghost: active
-      ? 'bg-white/10 text-white'
-      : 'bg-transparent text-zinc-400 hover:text-zinc-200 hover:bg-white/5 active:bg-white/10',
+      ? 'bg-black/10 dark:bg-white/10 text-zinc-900 dark:text-white'
+      : 'bg-transparent text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200 hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/10 dark:active:bg-white/10',
     subtle: active
-      ? 'bg-white/15 text-white border border-white/10'
-      : 'bg-white/5 text-zinc-300 hover:bg-white/10 border border-white/5 hover:text-white',
+      ? 'bg-black/10 dark:bg-white/15 text-zinc-900 dark:text-white border border-black/10 dark:border-white/10'
+      : 'bg-black/5 dark:bg-white/5 text-zinc-700 dark:text-zinc-300 hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/5 hover:text-zinc-900 dark:hover:text-white',
     solid:
-      'bg-zinc-200 text-zinc-900 hover:bg-white active:bg-zinc-300 shadow-sm font-medium',
+      'bg-zinc-900 text-white dark:bg-zinc-200 dark:text-zinc-900 hover:bg-black dark:hover:bg-white shadow-sm font-medium',
   }
 
   return (

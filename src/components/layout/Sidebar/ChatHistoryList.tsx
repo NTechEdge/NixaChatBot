@@ -35,10 +35,10 @@ export const ChatHistoryList: React.FC = () => {
   return (
     <div className="flex-1 flex flex-col min-h-0 px-3 mt-4">
       {/* Header */}
-      <div className="flex items-center justify-between px-2 pb-2 text-xs font-medium text-zinc-400 select-none">
+      <div className="flex items-center justify-between px-2 pb-2 text-xs font-medium text-zinc-500 dark:text-zinc-400 select-none">
         <span>Chats and tasks</span>
         <button
-          className="text-zinc-500 hover:text-zinc-300 p-1 rounded hover:bg-white/5 transition-colors cursor-pointer"
+          className="text-zinc-400 hover:text-zinc-700 dark:text-zinc-500 dark:hover:text-zinc-300 p-1 rounded hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer"
           title="Filter and sort"
         >
           <ArrowUpDown className="w-3.5 h-3.5" />
@@ -57,12 +57,12 @@ export const ChatHistoryList: React.FC = () => {
               className={cn(
                 'w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-xs transition-colors text-left cursor-pointer group',
                 isSelected
-                  ? 'bg-white/10 text-zinc-100 font-medium'
-                  : 'text-zinc-400 hover:text-zinc-200 hover:bg-white/5'
+                  ? 'bg-black/10 dark:bg-white/10 text-zinc-900 dark:text-zinc-100 font-medium'
+                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-black/5 dark:hover:bg-white/5'
               )}
             >
               {/* Bullet Dot */}
-              <span className="w-1.5 h-1.5 rounded-full border border-zinc-600 group-hover:border-zinc-400 shrink-0" />
+              <span className="w-1.5 h-1.5 rounded-full border border-zinc-400 dark:border-zinc-600 group-hover:border-zinc-600 dark:group-hover:border-zinc-400 shrink-0" />
               <span className="truncate">{item.title}</span>
             </button>
           )

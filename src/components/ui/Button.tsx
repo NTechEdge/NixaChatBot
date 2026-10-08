@@ -25,7 +25,7 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseStyles =
-    'inline-flex items-center justify-center font-medium transition-colors duration-150 select-none focus:outline-none focus-visible:ring-1 focus-visible:ring-white/20 disabled:opacity-50 disabled:pointer-events-none'
+    'inline-flex items-center justify-center font-medium transition-colors duration-150 select-none focus:outline-none focus-visible:ring-1 focus-visible:ring-black/20 dark:focus-visible:ring-white/20 disabled:opacity-50 disabled:pointer-events-none'
 
   const sizeStyles: Record<ButtonSize, string> = {
     sm: 'text-xs px-2.5 py-1 rounded-lg gap-1.5',
@@ -35,15 +35,15 @@ export const Button: React.FC<ButtonProps> = ({
 
   const variantStyles: Record<ButtonVariant, string> = {
     primary:
-      'bg-zinc-100 text-zinc-900 hover:bg-white active:bg-zinc-200 shadow-sm font-semibold',
+      'bg-zinc-900 text-white hover:bg-black active:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white dark:active:bg-zinc-200 shadow-sm font-semibold',
     secondary:
-      'bg-white/5 text-zinc-200 hover:bg-white/10 active:bg-white/15 border border-white/5',
+      'bg-black/5 text-zinc-800 hover:bg-black/10 active:bg-black/15 border border-black/5 dark:bg-white/5 dark:text-zinc-200 dark:hover:bg-white/10 dark:active:bg-white/15 dark:border-white/5',
     ghost:
-      'bg-transparent text-zinc-300 hover:bg-white/5 active:bg-white/10 hover:text-white',
+      'bg-transparent text-zinc-700 hover:bg-black/5 hover:text-black dark:text-zinc-300 dark:hover:bg-white/5 dark:hover:text-white',
     outline:
-      'bg-transparent text-zinc-200 border border-white/15 hover:bg-white/5 active:bg-white/10',
+      'bg-transparent text-zinc-800 border border-black/15 hover:bg-black/5 dark:text-zinc-200 dark:border-white/15 dark:hover:bg-white/5',
     pill:
-      'bg-white/5 text-zinc-300 hover:bg-white/10 rounded-full border border-white/10 text-xs px-3 py-1',
+      'bg-black/5 text-zinc-800 hover:bg-black/10 rounded-full border border-black/10 text-xs px-3 py-1 dark:bg-white/5 dark:text-zinc-300 dark:hover:bg-white/10 dark:border-white/10',
   }
 
   return (

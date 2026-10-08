@@ -26,11 +26,14 @@ export const Badge: React.FC<BadgeProps> = ({
   }
 
   const toneStyles: Record<BadgeTone, string> = {
-    default: 'bg-white/5 text-zinc-300 border border-white/10',
+    default:
+      'bg-black/5 text-zinc-700 border border-black/10 dark:bg-white/5 dark:text-zinc-300 dark:border-white/10',
     accent:
-      'bg-indigo-950/60 text-indigo-300 border border-indigo-500/30 hover:bg-indigo-900/50 hover:text-indigo-200 transition-colors',
-    outline: 'bg-transparent text-zinc-400 border border-zinc-700/60',
-    ghost: 'bg-transparent text-zinc-400 hover:text-zinc-200',
+      'bg-indigo-100 text-indigo-700 border border-indigo-200 dark:bg-indigo-950/60 dark:text-indigo-300 dark:border-indigo-500/30',
+    outline:
+      'bg-transparent text-zinc-600 border border-black/15 dark:text-zinc-400 dark:border-zinc-700/60',
+    ghost:
+      'bg-transparent text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200',
   }
 
   const Component = onClick ? 'button' : 'span'

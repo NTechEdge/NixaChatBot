@@ -44,7 +44,7 @@ export const ChatTextarea: React.FC<ChatTextareaProps> = ({
       placeholder={placeholder}
       rows={1}
       className={cn(
-        'w-full resize-none bg-transparent text-zinc-100 placeholder:text-zinc-500 focus:outline-none text-sm md:text-base leading-relaxed selection:bg-amber-500/20 selection:text-amber-200 border-0 p-0',
+        'w-full resize-none bg-transparent text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:outline-none text-sm md:text-base leading-relaxed selection:bg-amber-500/20 selection:text-amber-900 dark:selection:text-amber-200 border-0 p-0',
         className
       )}
       {...props}

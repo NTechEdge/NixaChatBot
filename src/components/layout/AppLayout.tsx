@@ -1,14 +1,18 @@
 import React, { type ReactNode } from 'react'
 import { Sidebar } from './Sidebar/Sidebar'
 import { Header } from './Header/Header'
+import { useThemeSync } from '../../hooks/useThemeSync'
 
 interface AppLayoutProps {
   children: ReactNode
 }
 
 export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
+  // Synchronizes Redux theme state to document root class
+  useThemeSync()
+
   return (
-    <div className="flex h-screen w-screen overflow-hidden bg-[#0c0d0e] text-zinc-100 font-sans">
+    <div className="flex h-screen w-screen overflow-hidden bg-[#faf9f5] dark:bg-[#0c0d0e] text-zinc-900 dark:text-zinc-100 font-sans transition-colors duration-200">
       {/* Collapsible Left Sidebar */}
       <Sidebar />
 
