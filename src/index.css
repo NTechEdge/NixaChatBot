@@ -1,1 +1,44 @@
 @import "tailwindcss";
+
+@theme {
+  --font-serif: "Lora", Georgia, Cambria, serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --color-claude-bg: #0c0d0e;
+  --color-claude-sidebar: #141517;
+  --color-claude-surface: rgba(20, 21, 23, 0.8);
+  --color-claude-input: #1c1d21;
+  --color-claude-accent: #d97706;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background-color: #0c0d0e;
+  color: #f4f4f5;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Subtle Claude-style custom scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
