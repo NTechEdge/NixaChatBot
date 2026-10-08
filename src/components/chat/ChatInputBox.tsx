@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Plus, ChevronDown, Mic, Volume2, ArrowUp, Check } from 'lucide-react'
-import { useAppDispatch, useAppSelector } from '../../store'
+import { useAppDispatch, useAppSelector, store } from '../../store'
 import {
   setPromptText,
   setActiveMode,
   setSelectedModel,
+  sendMessage,
+  addAssistantReply,
 } from '../../store/slices/chatUiSlice'
 import { ChatTextarea } from '../ui/ChatTextarea'
 import { ActionPill } from '../ui/ActionPill'
@@ -38,9 +40,20 @@ export const ChatInputBox: React.FC = () => {
   }, [])
 
   const handleSubmit = () => {
-    if (!promptText.trim()) return
-    // UI state demonstration: clear input or trigger action
-    dispatch(setPromptText(''))
+    const text = promptText.trim()
+    if (!text) return
+
+    dispatch(sendMessage(text))
+
+    // Simulate smart AI response
+    setTimeout(() => {
+      const currentState = store.getState()
+      const convId = currentState.chatUi.activeConversationId
+      if (convId) {
+        const reply = `I understand your question about: "${text}".\n\nNixa is running in ${currentState.chatUi.activeMode.toUpperCase()} mode using ${currentState.chatUi.selectedModel}. I'm ready to help you implement, refine, or review any tasks!`
+        dispatch(addAssistantReply({ convId, content: reply }))
+      }
+    }, 750)
   }
 
   return (
