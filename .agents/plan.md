@@ -125,34 +125,34 @@ Following `.agents/AGENTS.md` (one task at a time, verify, atomic commit):
 
 ### Phase 1: Setup Foundation & Redux Store
 
-- [ ] Configure Tailwind CSS v4 in `src/index.css` with `black/80` theme background and variables.
-- [ ] Setup Redux Toolkit store (`store/index.ts`, `store/slices/uiSlice.ts`, `store/slices/chatUiSlice.ts`).
-- [ ] Wrap application with `<Provider store={store}>` and verify typing.
+- [x] Configure Tailwind CSS v4 in `src/index.css` with `black/80` theme background and variables.
+- [x] Setup Redux Toolkit store (`store/index.ts`, `store/slices/uiSlice.ts`, `store/slices/chatUiSlice.ts`).
+- [x] Wrap application with `<Provider store={store}>` and verify typing.
 - **Verification**: Ensure app builds with zero errors and Redux hooks are available.
 
 ### Phase 2: Core Atomic UI Primitives
 
-- [ ] Create `Button` and `IconButton` with Tailwind styles and Lucide icon support.
-- [ ] Create `ActionPill` (for 'Chat', 'Cowork' and model badges).
-- [ ] Create `Badge` and `Avatar`.
-- [ ] Create `ChatTextarea` with auto-resizing height behavior.
+- [x] Create `Button` and `IconButton` with Tailwind styles and Lucide icon support.
+- [x] Create `ActionPill` (for 'Chat', 'Cowork' and model badges).
+- [x] Create `Badge` and `Avatar`.
+- [x] Create `ChatTextarea` with auto-resizing height behavior.
 - **Verification**: Test individual components with different props and verify hover/focus states.
 
 ### Phase 3: Claude-Inspired Sidebar & Header Layout Shell
 
-- [ ] Build `Sidebar` containing:
+- [x] Build `Sidebar` containing:
   - "+ New" action button
   - Navigation links (`Projects`, `Artifacts`, `Code`, `Customize`)
   - "Chats and tasks" section with search icon and mock chat history items with bullet points
   - Footer user profile (`Eistiak Free`) with settings icon
-- [ ] Build minimal top `Header` ("Free plan • Upgrade" pill and avatar).
-- [ ] Connect sidebar toggle state to Redux (`isSidebarOpen`).
+- [x] Build minimal top `Header` ("Free plan • Upgrade" pill and avatar).
+- [x] Connect sidebar toggle state to Redux (`isSidebarOpen`).
 - **Verification**: Test sidebar collapse/expand transitions and responsive drawer behavior.
 
 ### Phase 4: Center Hero & Floating Prompt Box
 
-- [ ] Build `HeroGreeting` component with the signature star icon and dynamic greeting (*"Afternoon, Eistiak"*).
-- [ ] Build `ChatInputBox` matching the Claude reference UI:
+- [x] Build `HeroGreeting` component with the signature star icon and dynamic greeting (*"Afternoon, Eistiak"*).
+- [x] Build `ChatInputBox` matching the Claude reference UI:
   - Textarea ("How can I help you today?")
   - Action row with:
     - Attachment button (`+`)
